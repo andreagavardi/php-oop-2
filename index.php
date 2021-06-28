@@ -19,6 +19,11 @@ $andrea->setCodice_sconto('BBCCDDEE');
 
 //creo utente premium luca
 $luca = new Premium_user('Luca56lol', 25, 'luca.example@mail.com');
+//var_dump($luca, $andrea);
 
+//setto un codice sconto
+$luca->setCodice_sconto('BBCCDDEE');
 
-//$phone->setDiscount($andrea->getCodice_sconto()); controllo se andrea ha diritto al codice sconto
+//controllo se lo sconto è applicato sul prodotto
+$lenovo->setDiscount($andrea->getCodice_sconto(), $andrea->getUserType(), $andrea->getDiscount()); //controllo se andrea ha diritto al codice sconto
+var_dump($lenovo->getPrice());
