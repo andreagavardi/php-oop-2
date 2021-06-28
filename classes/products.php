@@ -24,6 +24,14 @@ class Product
     {
         return $this->price;
     }
+
+    public function setDiscount($codice_sconto)
+    {
+
+        if (in_array($codice_sconto, $this->vouchers)) {
+            var_dump('sconto applicato');
+        }
+    }
 }
 
 class Laptop extends Product
