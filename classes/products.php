@@ -24,6 +24,14 @@ class Product
     {
         return $this->price;
     }
+    public function getName()
+    {
+        return $this->name;
+    }
+    public function getCategory()
+    {
+        return $this->category;
+    }
 
     /**
      * ## Calcola sconto

@@ -2,31 +2,51 @@
 
 include __DIR__ . '/classes/products.php';
 include __DIR__ . '/classes/users.php';
-
-// prodotto generico
-$phone = new Product('I-phone', 1500, 'mobile', 25);
-
-//prodotto della classe Laptop
-$lenovo = new Laptop('Ideapad-Gaming', 1150, 'notebook', 20, 8017596102500, '16 Gb', 'Intel-i7', '14.5 Pollici');
-
+require_once __DIR__ . '/database/laptops.php';
 //utente generico
 $andrea = new User('andrea89', 32, 'andrea.example.com');
 
 //setto un codice sconto per lo user andrea
 $andrea->setCodice_sconto('AABBCCDD');
 
-//var_dump($andrea->getCodice_sconto());
 
 //creo utente premium luca
 $luca = new Premium_user('Luca56lol', 25, 'luca.example@mail.com');
-//var_dump($luca, $andrea);
 
 //setto un codice sconto
 $luca->setCodice_sconto('BBCCDDEE');
 
-//controllo se lo sconto è applicato sul prodotto - si può provare a cambiare user e codice sconto per verificarne il funzionamento
-$lenovo->setDiscount($andrea->getCodice_sconto(), $andrea->getUserType(), $andrea->getDiscount()); //controllo se andrea ha diritto al codice sconto
-var_dump($lenovo->getPrice());
+?>
 
-$phone->setDiscount($andrea->getCodice_sconto(), $andrea->getUserType(), $andrea->getDiscount());
-var_dump($phone->getPrice());
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptops</title>
+</head>
+
+<body>
+
+    <?php foreach ($laptops as $laptop) : ?>
+
+        <h2><?= $laptop->getName() ?></h2>
+        <h3><?= $laptop->getPrice() ?></h3>
+        <span><?= $laptop->getCategory() ?></span>
+        <div class="sconto">
+            <?= $laptop->setDiscount($luca->getCodice_sconto(), $luca->getUserType(), $luca->getDiscount()); ?>
+        </div>
+        <span> Prezzo Scontato: <?= $laptop->getPrice(); ?></span>
+
+    <?php endforeach ?>
+
+
+
+
+
+
+</body>
+
+</html>
