@@ -36,6 +36,8 @@ $luca->setCodice_sconto('BBCCDDEE');
         <h3><?= $laptop->getPrice() ?></h3>
         <span><?= $laptop->getCategory() ?></span>
         <div class="sconto">
+            <!-- provare cambiando nome utente e verificare lo sconto applicato -->
+
             <?= $laptop->setDiscount($luca->getCodice_sconto(), $luca->getUserType(), $luca->getDiscount()); ?>
         </div>
         <span> Prezzo Scontato: <?= $laptop->getPrice(); ?></span>
